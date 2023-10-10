@@ -14,11 +14,6 @@
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-<<<<<<< HEAD
-    "@types/node": "20.4.5",
-    "@types/react": "18.2.18",
-=======
->>>>>>> 0669770 (Tambah fitur lihat seluruh data mahasiswa pada level kaprodi)
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
@@ -33,14 +28,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
-<<<<<<< HEAD
-    "tailwindcss": "^3.3.3",
-    "typescript": "5.1.6"
-  },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/jsonwebtoken": "^9.0.2"
-=======
     "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
@@ -49,6 +36,5 @@
     "@types/node": "20.8.2",
     "@types/react": "18.2.25",
     "typescript": "5.2.2"
->>>>>>> 0669770 (Tambah fitur lihat seluruh data mahasiswa pada level kaprodi)
   }
 }

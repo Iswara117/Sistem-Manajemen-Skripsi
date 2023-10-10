@@ -92,13 +92,8 @@ const SidebarContent = ({ onClose, level, status, ...rest }: SidebarProps) => {
         <NavItem icon={FaListOl}>
           <Link href="/daftar-pengajuan">Daftar Pengajuan</Link>
         </NavItem>
-<<<<<<< HEAD
-        <NavItem icon={FaListOl}>
-          <Link href="/daftar-dospem">Daftar Dosen Pembimbing</Link>
-=======
         <NavItem icon={FaList}>
           <Link href="/daftar-mahasiswa">Daftar Mahasiswa</Link>
->>>>>>> 0669770 (Tambah fitur lihat seluruh data mahasiswa pada level kaprodi)
         </NavItem>
       </>
     );
