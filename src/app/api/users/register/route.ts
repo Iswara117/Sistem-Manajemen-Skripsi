@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
         success: false,
       });
     }
+<<<<<<< HEAD
     
 
     // cek if user exist
@@ -42,6 +43,15 @@ export async function POST(request: NextRequest) {
     if (checkEmail) {
       return NextResponse.json({
         message: "Email Sudah Pernah terdaftar",
+=======
+
+    // cek if user exist
+    const userDb = await User.findOne({ kode });
+
+    if (userDb) {
+      return NextResponse.json({
+        message: "Akun sudah ada",
+>>>>>>> 0669770 (Tambah fitur lihat seluruh data mahasiswa pada level kaprodi)
         success: false,
       });
     }
