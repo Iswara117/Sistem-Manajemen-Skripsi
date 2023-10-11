@@ -3,7 +3,7 @@ import DashboardLayout from "@/components/layouts/Dashboard";
 import { getDataUser } from "@/helpers/getDataUser";
 import { Flex, Spinner, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import TabelDaftarMahasiswa from "./TabelDaftarMahasiswa";
+import TabelDataMahasiswa from "./TabelDataMahasiswa";
 import { useRouter } from "next/navigation";
 
 const Content = () => {
@@ -37,7 +37,7 @@ const Content = () => {
         <Text color="orange" fontSize="2xl">
           Daftar Mahasiswa
         </Text>
-        <TabelDaftarMahasiswa user={user} />
+        <TabelDataMahasiswa user={user} />
       </Stack>
     </DashboardLayout>
   );

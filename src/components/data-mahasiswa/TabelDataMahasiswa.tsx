@@ -29,7 +29,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const TabelDaftarPengajuan = ({ user }: any) => {
+const TabelDataMahasiswa = ({ user }: any) => {
   const router = useRouter();
   const [mahasiswa, setMahasiswa]: any = useState([]);
 
@@ -68,7 +68,6 @@ const TabelDaftarPengajuan = ({ user }: any) => {
                 <Th>Gender</Th>
                 <Th>Dosen Pembimbing 1</Th>
                 <Th>Dosen Pembimbing 2</Th>
-                <Th>Aksi</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -95,4 +94,4 @@ const TabelDaftarPengajuan = ({ user }: any) => {
   );
 };
 
-export default TabelDaftarPengajuan;
+export default TabelDataMahasiswa;
