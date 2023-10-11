@@ -95,6 +95,9 @@ const SidebarContent = ({ onClose, level, status, ...rest }: SidebarProps) => {
         <NavItem icon={FaList}>
           <Link href="/data-mahasiswa">Data Mahasiswa</Link>
         </NavItem>
+        <NavItem icon={FaList}>
+          <Link href="/data-dosen">Data Dosen</Link>
+        </NavItem>
       </>
     );
   };
