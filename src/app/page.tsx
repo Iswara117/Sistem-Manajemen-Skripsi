@@ -27,6 +27,7 @@ export default function Page() {
   const [user, setUser]: any = useState([]);
   useEffect(() => {
     getDataUser().then((result) => {
+      console.log(result)
       setUser(result);
     });
   }, []);

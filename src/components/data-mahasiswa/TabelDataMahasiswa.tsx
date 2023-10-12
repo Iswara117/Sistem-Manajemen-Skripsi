@@ -48,6 +48,7 @@ const TabelDataMahasiswa = ({ user }: any) => {
     getMahasiswa();
   });
 
+  console.log(mahasiswa.pembimbing1)
   return (
     <>
       <Stack spacing={5}>
@@ -78,8 +79,8 @@ const TabelDataMahasiswa = ({ user }: any) => {
                   <Td>{item._doc.kode}</Td>
                   <Td>{item._doc.angkatan}</Td>
                   <Td>{item._doc.gender}</Td>
-                  <Td>{item.pembimbing1.nama}</Td>
-                  <Td>{item.pembimbing2.nama}</Td>
+                  <Td>{item.pembimbing1 ? (item.pembimbing1.nama): ('Belum ada dosen pembimbing')}</Td>
+                  <Td>{item.pembimbing2 ? (item.pembimbing2.nama): ('Belum ada dosen pembimbing')}</Td>
                 </Tr>
               ))}
             </Tbody>
