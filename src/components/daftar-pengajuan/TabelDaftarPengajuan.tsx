@@ -32,6 +32,7 @@ import React, { useEffect, useState } from "react";
 const TabelDaftarPengajuan = ({ user }: any) => {
   const router = useRouter();
   const [gelombang, setGelombang]: any = useState([]);
+  const [idGelombang, setIdGelombang] = useState<string>();
   const [pengajuan, setPengajuan] = useState([]);
   const [loading, setLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,14 +44,18 @@ const TabelDaftarPengajuan = ({ user }: any) => {
   });
 
   const tolakPengajuan = async () => {
-    if (dataPenolakan.alasan === "") {
-      return;
-    }
     onClose();
     setLoading(true);
-    const response = await axios.post(`/api/pengajuan/tolak`, dataPenolakan);
-    console.log(response.data);
-    setLoading(false);
+    try {
+      const res = await axios.post("/api/pengajuan/tolak", dataPenolakan);
+      router.push("/daftar-pengajuan");
+      setLoading(false);
+
+      getDaftarPengajuan(idGelombang);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -69,6 +74,7 @@ const TabelDaftarPengajuan = ({ user }: any) => {
 
       const response = await axios.post("/api/pengajuan/list/", data);
       setPengajuan(response.data.data);
+      console.log(response.data);
     }
   };
 
@@ -94,7 +100,12 @@ const TabelDaftarPengajuan = ({ user }: any) => {
       <Stack spacing={5}>
         <Card w={"16rem"}>
           <CardBody>
-            <Select onChange={(e) => getDaftarPengajuan(e.target.value)}>
+            <Select
+              onChange={(e) => {
+                getDaftarPengajuan(e.target.value);
+                setIdGelombang(e.target.value);
+              }}
+            >
               <option value="">Pilih gelombang</option>
               {gelombang.map((item: any) => {
                 return (
@@ -121,6 +132,7 @@ const TabelDaftarPengajuan = ({ user }: any) => {
                 <Th>Mahasiswa</Th>
                 <Th>Diajukan Pada</Th>
                 <Th>Status</Th>
+                <Th>Alasan</Th>
                 <Th>Aksi</Th>
               </Tr>
             </Thead>
@@ -130,7 +142,7 @@ const TabelDaftarPengajuan = ({ user }: any) => {
 
                 const Opsi = () => {
                   if (user.level === "staf") {
-                    if (item.status !== "Diterima") {
+                    if (item.status === "Menunggu") {
                       if (item.aktivasi === false) {
                         return (
                           <Td>
@@ -177,6 +189,14 @@ const TabelDaftarPengajuan = ({ user }: any) => {
                           </Td>
                         );
                       }
+                    } else if (item.status === "Ditolak") {
+                      return (
+                        <Td>
+                          <Text fontStyle={"italic"} fontSize={"sm"}>
+                            Pengajuan Ditolak!
+                          </Text>
+                        </Td>
+                      );
                     } else {
                       return (
                         <Td>
@@ -190,7 +210,7 @@ const TabelDaftarPengajuan = ({ user }: any) => {
                       );
                     }
                   } else {
-                    if (item.status !== "Diterima") {
+                    if (item.status === "Menunggu") {
                       if (item.aktivasi) {
                         return (
                           <Td>
@@ -238,7 +258,7 @@ const TabelDaftarPengajuan = ({ user }: any) => {
                           </Td>
                         );
                       }
-                    } else {
+                    } else if (item.status === "Diterima") {
                       return (
                         <Td>
                           <Link
@@ -247,6 +267,14 @@ const TabelDaftarPengajuan = ({ user }: any) => {
                           >
                             Detail
                           </Link>
+                        </Td>
+                      );
+                    } else {
+                      return (
+                        <Td>
+                          <Text fontStyle={"italic"} fontSize={"sm"}>
+                            Pengajuan Ditolak!
+                          </Text>
                         </Td>
                       );
                     }
@@ -259,6 +287,7 @@ const TabelDaftarPengajuan = ({ user }: any) => {
                     <Td>{item.nama_mahasiswa}</Td>
                     <Td>{tanggalDiajukan.toLocaleDateString()}</Td>
                     <Td>{item.status}</Td>
+                    <Td>{item.alasan}</Td>
                     <Opsi />
                   </Tr>
                 );
